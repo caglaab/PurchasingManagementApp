@@ -1,0 +1,23 @@
+# Visual Studio
+.vs/
+*.user
+*.suo
+
+# Build folders
+bin/
+obj/
+
+# Visual Studio generated files
+*.csproj.user
+
+# Publish output
+publish/
+
+# Database files
+*.db
+*.db-shm
+*.db-wal
+
+# Temporary files
+*.tmp
+*.log
