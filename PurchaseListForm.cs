@@ -1,6 +1,7 @@
 ﻿using Microsoft.Data.Sqlite;
 using System;
 using System.Data;
+using System.Drawing;
 using System.Windows.Forms;
 using ClosedXML.Excel;
 
@@ -13,6 +14,232 @@ namespace PurchasingManagementApp
             InitializeComponent();
 
             dgvPurchases.AutoGenerateColumns = true;
+
+            ApplyModernTheme();
+        }
+        private void ApplyModernTheme()
+        {
+            // FORM
+            this.BackColor = Color.FromArgb(245, 247, 250);
+            this.Font = new Font("Segoe UI", 10F);
+            this.StartPosition = FormStartPosition.CenterScreen;
+            this.ClientSize = new Size(1100, 650);
+            this.Text = "Satın Alma Kayıtları";
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+
+            // BAŞLIK
+            label1.Text = "Satın Alma Kayıtları";
+            label1.Font = new Font(
+                "Segoe UI",
+                22F,
+                FontStyle.Bold);
+
+            label1.ForeColor =
+                Color.FromArgb(31, 41, 55);
+
+            label1.Location =
+                new Point(40, 30);
+
+            label1.AutoSize = true;
+
+            // ARAMA LABEL
+            label2.Text = "Kalem No";
+            label2.Font =
+                new Font("Segoe UI", 9F, FontStyle.Bold);
+
+            label2.ForeColor =
+                Color.FromArgb(75, 85, 99);
+
+            label2.Location =
+                new Point(40, 95);
+
+            // ARAMA KUTUSU
+            txtArama.Location =
+                new Point(40, 120);
+
+            txtArama.Size =
+                new Size(230, 32);
+
+            txtArama.Font =
+                new Font("Segoe UI", 10F);
+
+            // TEDARİKÇİ LABEL
+            label3.Text = "Tedarikçi";
+            label3.Font =
+                new Font("Segoe UI", 9F, FontStyle.Bold);
+
+            label3.ForeColor =
+                Color.FromArgb(75, 85, 99);
+
+            label3.Location =
+                new Point(290, 95);
+
+            // TEDARİKÇİ COMBOBOX
+            cmbTedarikci.Location =
+                new Point(290, 120);
+
+            cmbTedarikci.Size =
+                new Size(230, 32);
+
+            cmbTedarikci.Font =
+                new Font("Segoe UI", 10F);
+
+            // ARA BUTONU
+            StyleModernButton(
+                btnAra,
+                "Ara",
+                Color.FromArgb(37, 99, 235));
+
+            btnAra.Location =
+                new Point(540, 120);
+
+            btnAra.Size =
+                new Size(100, 32);
+
+            // EXCEL
+            StyleModernButton(
+                btnExportExcel,
+                "Excel'e Aktar",
+                Color.FromArgb(15, 118, 110));
+
+            btnExportExcel.Location =
+                new Point(870, 120);
+
+            btnExportExcel.Size =
+                new Size(170, 38);
+
+            // TABLO
+            dgvPurchases.Location =
+                new Point(40, 175);
+
+            dgvPurchases.Size =
+                new Size(1000, 390);
+
+            dgvPurchases.BackgroundColor =
+                Color.White;
+
+            dgvPurchases.BorderStyle =
+                BorderStyle.None;
+
+            dgvPurchases.CellBorderStyle =
+                DataGridViewCellBorderStyle.SingleHorizontal;
+
+            dgvPurchases.GridColor =
+                Color.FromArgb(229, 231, 235);
+
+            dgvPurchases.RowHeadersVisible =
+                false;
+
+            dgvPurchases.AllowUserToAddRows =
+                false;
+
+            dgvPurchases.AllowUserToResizeRows =
+                false;
+
+            dgvPurchases.SelectionMode =
+                DataGridViewSelectionMode.FullRowSelect;
+
+            dgvPurchases.MultiSelect = false;
+
+            dgvPurchases.AutoSizeRowsMode =
+                DataGridViewAutoSizeRowsMode.None;
+
+            dgvPurchases.RowTemplate.Height = 38;
+
+            dgvPurchases.EnableHeadersVisualStyles =
+                false;
+
+            dgvPurchases.ColumnHeadersDefaultCellStyle.BackColor =
+                Color.FromArgb(31, 41, 55);
+
+            dgvPurchases.ColumnHeadersDefaultCellStyle.ForeColor =
+                Color.White;
+
+            dgvPurchases.ColumnHeadersDefaultCellStyle.Font =
+                new Font("Segoe UI", 9F, FontStyle.Bold);
+
+            dgvPurchases.ColumnHeadersDefaultCellStyle.Alignment =
+                DataGridViewContentAlignment.MiddleLeft;
+
+            dgvPurchases.ColumnHeadersHeight = 42;
+
+            dgvPurchases.DefaultCellStyle.Font =
+                new Font("Segoe UI", 9F);
+
+            dgvPurchases.DefaultCellStyle.ForeColor =
+                Color.FromArgb(31, 41, 55);
+
+            dgvPurchases.DefaultCellStyle.BackColor =
+                Color.White;
+
+            dgvPurchases.DefaultCellStyle.SelectionBackColor =
+                Color.FromArgb(219, 234, 254);
+
+            dgvPurchases.DefaultCellStyle.SelectionForeColor =
+                Color.FromArgb(30, 64, 175);
+
+            // ALT BUTONLAR
+            StyleModernButton(
+                btnGuncelle,
+                "Düzenle",
+                Color.FromArgb(124, 58, 237));
+
+            btnGuncelle.Location =
+                new Point(40, 585);
+
+            btnGuncelle.Size =
+                new Size(140, 40);
+
+            StyleModernButton(
+                btnSil,
+                "Sil",
+                Color.FromArgb(220, 38, 38));
+
+            btnSil.Location =
+                new Point(195, 585);
+
+            btnSil.Size =
+                new Size(120, 40);
+        }
+        private void StyleModernButton(
+    Button button,
+    string text,
+    Color color)
+        {
+            button.Text = text;
+
+            button.BackColor = color;
+            button.ForeColor = Color.White;
+
+            button.FlatStyle =
+                FlatStyle.Flat;
+
+            button.FlatAppearance.BorderSize =
+                0;
+
+            button.Font =
+                new Font(
+                    "Segoe UI",
+                    9.5F,
+                    FontStyle.Bold);
+
+            button.Cursor =
+                Cursors.Hand;
+
+            button.UseVisualStyleBackColor =
+                false;
+
+            button.MouseEnter += (sender, e) =>
+            {
+                button.BackColor =
+                    ControlPaint.Dark(color, 0.15f);
+            };
+
+            button.MouseLeave += (sender, e) =>
+            {
+                button.BackColor = color;
+            };
         }
 
         private void PurchaseListForm_Load(object sender, EventArgs e)
@@ -62,6 +289,12 @@ namespace PurchasingManagementApp
 
                         dgvPurchases.AutoSizeColumnsMode =
                             DataGridViewAutoSizeColumnsMode.Fill;
+                        dgvPurchases.Columns["Kalem No"].FillWeight = 90;
+                        dgvPurchases.Columns["Tedarikçi"].FillWeight = 130;
+                        dgvPurchases.Columns["Miktar"].FillWeight = 70;
+                        dgvPurchases.Columns["Birim Fiyat"].FillWeight = 100;
+                        dgvPurchases.Columns["Satın Alma Tarihi"].FillWeight = 110;
+                        dgvPurchases.Columns["Toplam Tutar"].FillWeight = 110;
                     }
                 }
             }
@@ -312,6 +545,14 @@ namespace PurchasingManagementApp
 
                             dgvPurchases.AutoGenerateColumns = true;
                             dgvPurchases.DataSource = table;
+                            dgvPurchases.Columns["Miktar"].DefaultCellStyle.Alignment =
+                                DataGridViewContentAlignment.MiddleRight;
+
+                            dgvPurchases.Columns["Birim Fiyat"].DefaultCellStyle.Alignment =
+                                DataGridViewContentAlignment.MiddleRight;
+
+                            dgvPurchases.Columns["Toplam Tutar"].DefaultCellStyle.Alignment =
+                                DataGridViewContentAlignment.MiddleRight;
 
                             if (dgvPurchases.Columns.Contains("Id"))
                             {
@@ -320,6 +561,12 @@ namespace PurchasingManagementApp
 
                             dgvPurchases.AutoSizeColumnsMode =
                                 DataGridViewAutoSizeColumnsMode.Fill;
+                            dgvPurchases.Columns["Kalem No"].FillWeight = 90;
+                            dgvPurchases.Columns["Tedarikçi"].FillWeight = 130;
+                            dgvPurchases.Columns["Miktar"].FillWeight = 70;
+                            dgvPurchases.Columns["Birim Fiyat"].FillWeight = 100;
+                            dgvPurchases.Columns["Satın Alma Tarihi"].FillWeight = 110;
+                            dgvPurchases.Columns["Toplam Tutar"].FillWeight = 110;
                         }
                     }
                 }
