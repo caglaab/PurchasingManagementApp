@@ -37,6 +37,7 @@
             btnAra = new Button();
             label3 = new Label();
             cmbTedarikci = new ComboBox();
+            btnExportExcel = new Button();
             ((System.ComponentModel.ISupportInitialize)dgvPurchases).BeginInit();
             SuspendLayout();
             // 
@@ -124,11 +125,22 @@
             cmbTedarikci.Size = new Size(151, 28);
             cmbTedarikci.TabIndex = 8;
             // 
+            // btnExportExcel
+            // 
+            btnExportExcel.Location = new Point(591, 88);
+            btnExportExcel.Name = "btnExportExcel";
+            btnExportExcel.Size = new Size(108, 29);
+            btnExportExcel.TabIndex = 9;
+            btnExportExcel.Text = "Excel'e Aktar";
+            btnExportExcel.UseVisualStyleBackColor = true;
+            btnExportExcel.Click += button1_Click;
+            // 
             // PurchaseListForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 565);
+            Controls.Add(btnExportExcel);
             Controls.Add(cmbTedarikci);
             Controls.Add(label3);
             Controls.Add(btnAra);
@@ -158,5 +170,6 @@
         private Button btnAra;
         private Label label3;
         private ComboBox cmbTedarikci;
+        private Button btnExportExcel;
     }
 }

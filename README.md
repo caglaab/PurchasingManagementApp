@@ -72,4 +72,3 @@ Masaüstü uygulaması Windows Forms kullanılarak geliştirilmiştir.
 
 ## 📄 Lisans
 
-Bu proje eğitim ve portföy amacıyla geliştirilmiştir.

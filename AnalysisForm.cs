@@ -2,6 +2,8 @@
 using System.Globalization;
 using System.Windows.Forms;
 using Microsoft.Data.Sqlite;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace PurchasingManagementApp
 {
@@ -12,10 +14,6 @@ namespace PurchasingManagementApp
         public AnalysisForm()
         {
             InitializeComponent();
-            MessageBox.Show(
-                "Kullanılan veritabanı:\n\n" +
-                Database.DatabasePath,
-                "VERİTABANI KONTROLÜ");
             LoadAnalysis();
         }
 
@@ -86,6 +84,8 @@ namespace PurchasingManagementApp
                                 "C2",
                                 new CultureInfo("tr-TR"));
                     }
+                    List<string> supplierNames = new List<string>();
+                    List<double> supplierTotals = new List<double>();
 
                     // TEDARİKÇİ BAZLI ANALİZ
                     string supplierAnalysisQuery = @"
@@ -132,8 +132,30 @@ namespace PurchasingManagementApp
                                         "C2",
                                         new CultureInfo("tr-TR"))
                                 );
+                                // Grafik için verileri al
+                                supplierNames.Add(supplier);
+                                supplierTotals.Add(Convert.ToDouble(totalPurchase));
                             }
                         }
+                        formsPlotSupplier.Plot.Clear();
+
+                        var bars = formsPlotSupplier.Plot.Add.Bars(supplierTotals.ToArray());
+
+
+
+                        formsPlotSupplier.Plot.Title("Tedarikçiye Göre Toplam Satın Alma");
+                        formsPlotSupplier.Plot.XLabel("Toplam Satın Alma Tutarı");
+
+                        // Tedarikçi isimlerini eksene bağla
+                        formsPlotSupplier.Plot.Axes.Bottom.SetTicks(
+                            Enumerable.Range(0, supplierNames.Count)
+                                .Select(i => (double)i)
+                                .ToArray(),
+                            supplierNames.ToArray()
+                        );
+
+                        formsPlotSupplier.Plot.Axes.AutoScale();
+                        formsPlotSupplier.Refresh();
                     }
                 }
             }
@@ -155,6 +177,11 @@ namespace PurchasingManagementApp
 
         private void AnalysisForm_Load(object sender, EventArgs e)
         {
+        }
+
+        private void label1_Click_1(object sender, EventArgs e)
+        {
+
         }
     }
 }

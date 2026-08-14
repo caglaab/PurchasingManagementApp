@@ -38,21 +38,23 @@
             lblAveragePriceTitle = new Label();
             lblAveragePrice = new Label();
             dgvSupplierAnalysis = new DataGridView();
-            lblSupplierAnalysis = new Label();
             Supplier = new DataGridViewTextBoxColumn();
             TotalPurchase = new DataGridViewTextBoxColumn();
             PurchaseCount = new DataGridViewTextBoxColumn();
             AveragePrice = new DataGridViewTextBoxColumn();
+            formsPlotSupplier = new ScottPlot.WinForms.FormsPlot();
             ((System.ComponentModel.ISupportInitialize)dgvSupplierAnalysis).BeginInit();
             SuspendLayout();
             // 
             // lblTitle
             // 
+            lblTitle.Font = new Font("Microsoft Sans Serif", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 162);
             lblTitle.Location = new Point(235, 9);
             lblTitle.Name = "lblTitle";
-            lblTitle.Size = new Size(157, 31);
+            lblTitle.Size = new Size(308, 31);
             lblTitle.TabIndex = 0;
             lblTitle.Text = "SATIN ALMA ANALİZİ";
+            lblTitle.TextAlign = ContentAlignment.MiddleCenter;
             lblTitle.Click += label1_Click;
             // 
             // lblTotalPurchaseTitle
@@ -66,13 +68,13 @@
             // 
             // lblTotalPurchase
             // 
-            lblTotalPurchase.AutoSize = true;
-            lblTotalPurchase.Font = new Font("Segoe UI", 14F);
+            lblTotalPurchase.Font = new Font("Microsoft Sans Serif", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 162);
             lblTotalPurchase.Location = new Point(47, 96);
             lblTotalPurchase.Name = "lblTotalPurchase";
-            lblTotalPurchase.Size = new Size(71, 32);
+            lblTotalPurchase.Size = new Size(180, 40);
             lblTotalPurchase.TabIndex = 2;
             lblTotalPurchase.Text = "₺0,00";
+            lblTotalPurchase.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // lblSupplierCountTitle
             // 
@@ -85,13 +87,13 @@
             // 
             // lblSupplierCount
             // 
-            lblSupplierCount.AutoSize = true;
-            lblSupplierCount.Font = new Font("Segoe UI", 14F);
+            lblSupplierCount.Font = new Font("Microsoft Sans Serif", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 162);
             lblSupplierCount.Location = new Point(438, 96);
             lblSupplierCount.Name = "lblSupplierCount";
-            lblSupplierCount.Size = new Size(27, 32);
+            lblSupplierCount.Size = new Size(180, 40);
             lblSupplierCount.TabIndex = 4;
             lblSupplierCount.Text = "0";
+            lblSupplierCount.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // lblItemCountTitle
             // 
@@ -104,13 +106,13 @@
             // 
             // lblItemCount
             // 
-            lblItemCount.AutoSize = true;
-            lblItemCount.Font = new Font("Segoe UI", 14F);
+            lblItemCount.Font = new Font("Microsoft Sans Serif", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 162);
             lblItemCount.Location = new Point(47, 191);
             lblItemCount.Name = "lblItemCount";
-            lblItemCount.Size = new Size(27, 32);
+            lblItemCount.Size = new Size(180, 40);
             lblItemCount.TabIndex = 6;
             lblItemCount.Text = "0";
+            lblItemCount.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // lblAveragePriceTitle
             // 
@@ -123,13 +125,13 @@
             // 
             // lblAveragePrice
             // 
-            lblAveragePrice.AutoSize = true;
-            lblAveragePrice.Font = new Font("Segoe UI", 14F);
+            lblAveragePrice.Font = new Font("Microsoft Sans Serif", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 162);
             lblAveragePrice.Location = new Point(438, 191);
             lblAveragePrice.Name = "lblAveragePrice";
-            lblAveragePrice.Size = new Size(71, 32);
+            lblAveragePrice.Size = new Size(180, 40);
             lblAveragePrice.TabIndex = 8;
             lblAveragePrice.Text = "₺0,00";
+            lblAveragePrice.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // dgvSupplierAnalysis
             // 
@@ -138,24 +140,14 @@
             dgvSupplierAnalysis.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvSupplierAnalysis.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvSupplierAnalysis.Columns.AddRange(new DataGridViewColumn[] { Supplier, TotalPurchase, PurchaseCount, AveragePrice });
-            dgvSupplierAnalysis.Location = new Point(75, 280);
+            dgvSupplierAnalysis.Location = new Point(20, 694);
             dgvSupplierAnalysis.MultiSelect = false;
             dgvSupplierAnalysis.Name = "dgvSupplierAnalysis";
             dgvSupplierAnalysis.ReadOnly = true;
             dgvSupplierAnalysis.RowHeadersWidth = 51;
             dgvSupplierAnalysis.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvSupplierAnalysis.Size = new Size(546, 221);
+            dgvSupplierAnalysis.Size = new Size(820, 200);
             dgvSupplierAnalysis.TabIndex = 9;
-            // 
-            // lblSupplierAnalysis
-            // 
-            lblSupplierAnalysis.AutoSize = true;
-            lblSupplierAnalysis.Font = new Font("Segoe UI", 12F);
-            lblSupplierAnalysis.Location = new Point(88, 239);
-            lblSupplierAnalysis.Name = "lblSupplierAnalysis";
-            lblSupplierAnalysis.Size = new Size(230, 28);
-            lblSupplierAnalysis.TabIndex = 10;
-            lblSupplierAnalysis.Text = "TEDARİKÇİ BAZLI ANALİZ";
             // 
             // Supplier
             // 
@@ -185,12 +177,19 @@
             AveragePrice.Name = "AveragePrice";
             AveragePrice.ReadOnly = true;
             // 
+            // formsPlotSupplier
+            // 
+            formsPlotSupplier.Location = new Point(0, 319);
+            formsPlotSupplier.Name = "formsPlotSupplier";
+            formsPlotSupplier.Size = new Size(820, 300);
+            formsPlotSupplier.TabIndex = 11;
+            // 
             // AnalysisForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 513);
-            Controls.Add(lblSupplierAnalysis);
+            ClientSize = new Size(882, 803);
+            Controls.Add(formsPlotSupplier);
             Controls.Add(dgvSupplierAnalysis);
             Controls.Add(lblAveragePrice);
             Controls.Add(lblAveragePriceTitle);
@@ -226,6 +225,6 @@
         private DataGridViewTextBoxColumn TotalPurchase;
         private DataGridViewTextBoxColumn PurchaseCount;
         private DataGridViewTextBoxColumn AveragePrice;
-        private Label lblSupplierAnalysis;
+        private ScottPlot.WinForms.FormsPlot formsPlotSupplier;
     }
 }

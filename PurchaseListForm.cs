@@ -2,6 +2,7 @@
 using System;
 using System.Data;
 using System.Windows.Forms;
+using ClosedXML.Excel;
 
 namespace PurchasingManagementApp
 {
@@ -346,6 +347,82 @@ namespace PurchasingManagementApp
             object sender,
             DataGridViewCellEventArgs e)
         {
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                using (SaveFileDialog saveFileDialog = new SaveFileDialog())
+                {
+                    saveFileDialog.Filter = "Excel Dosyası (*.xlsx)|*.xlsx";
+                    saveFileDialog.Title = "Excel Dosyasını Kaydet";
+                    saveFileDialog.FileName = "SatınAlmaRaporu.xlsx";
+
+                    if (saveFileDialog.ShowDialog() != DialogResult.OK)
+                        return;
+
+                    using (XLWorkbook workbook = new XLWorkbook())
+                    {
+                        var worksheet = workbook.Worksheets.Add("Satın Alma");
+
+                        // Sütun başlıkları
+                        for (int column = 0; column < dgvPurchases.Columns.Count; column++)
+                        {
+                            worksheet.Cell(1, column + 1).Value =
+                                dgvPurchases.Columns[column].HeaderText;
+                        }
+
+                        // Satın alma kayıtları
+                        int excelRow = 2;
+
+                        foreach (DataGridViewRow dataRow in dgvPurchases.Rows)
+                        {
+                            if (dataRow.IsNewRow)
+                                continue;
+
+                            for (int column = 0; column < dgvPurchases.Columns.Count; column++)
+                            {
+                                object value = dataRow.Cells[column].Value;
+
+                                worksheet.Cell(excelRow, column + 1).Value =
+                                    value?.ToString() ?? "";
+                            }
+
+                            excelRow++;
+                        }
+
+                        // Başlıkları biçimlendir
+                        var headerRange = worksheet.Range(
+                            1,
+                            1,
+                            1,
+                            dgvPurchases.Columns.Count);
+
+                        headerRange.Style.Font.Bold = true;
+
+                        // Sütun genişliklerini otomatik ayarla
+                        worksheet.Columns().AdjustToContents();
+
+                        // Excel dosyasını kaydet
+                        workbook.SaveAs(saveFileDialog.FileName);
+                    }
+
+                    MessageBox.Show(
+                        "Satın alma kayıtları Excel dosyasına başarıyla aktarıldı.",
+                        "Başarılı",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Information);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(
+                    "Excel aktarımı sırasında bir hata oluştu:\n\n" + ex.Message,
+                    "Hata",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
         }
     }
 }
